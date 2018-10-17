@@ -7,16 +7,20 @@
  *
  */
 
+import ether from './helpers/ether';
+
 const BigNumber = web3.BigNumber;
 require('chai')
+  .use(require('chai-as-promised'))
   .use(require('chai-bignumber')(BigNumber))
   .should();
 
-  const ZepTokenCrowdsale = artifacts.require('ZepTokenCrowdsale');
-  const ZepToken = artifacts.require('ZepToken');
+const ZepTokenCrowdsale = artifacts.require('ZepTokenCrowdsale');
+const ZepToken = artifacts.require('ZepToken');
 
-contract('ZepTokenCrowdsale', function([_, wallet]) {
+contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
 
+  console.log("wallet:", wallet, " investor1:", investor1, " investor2:", investor2);
   beforeEach(async function() {
     // For creating the ZepToken
     this.name = 'Zep Token';
@@ -38,6 +42,7 @@ contract('ZepTokenCrowdsale', function([_, wallet]) {
         this.rate,
         this.wallet,
         this.zepToken.address);
+    await this.zepToken.transferOwnership(this.zepCrowdsale.address);
   });
 
   describe('crowdsale', function() {
@@ -52,6 +57,23 @@ contract('ZepTokenCrowdsale', function([_, wallet]) {
     it('tracks the rate', async function() {
       const rate = await this.zepCrowdsale.rate();
       rate.should.be.bignumber.equal(this.rate);
+    });
+  });
+
+  describe('accepting payments', function() {
+    it('should accept payments', async function() {
+      await this.zepCrowdsale.sendTransaction({value: ether(1), from: investor1 }).should.be.fulfilled;
+      // Investor2 buys some tokens for investor1
+      await this.zepCrowdsale.buyTokens(investor1, {value: ether(1), from: investor2 }).should.be.fulfilled;
+    });
+  });
+
+  describe('minted crowdsale', function() {
+    it('mint tokens after purchase', async function() {
+      const originalTotalSupply = await this.zepToken.totalSupply();
+      await this.zepCrowdsale.sendTransaction({value: ether(1), from: investor1 });
+      const newTotalSupply = await this.zepToken.totalSupply();
+      assert.isTrue(newTotalSupply > originalTotalSupply);
     });
   });
 });
