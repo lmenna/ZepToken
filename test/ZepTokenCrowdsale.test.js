@@ -45,5 +45,13 @@ contract('ZepTokenCrowdsale', function([_, wallet]) {
       const token = await this.zepCrowdsale.token();
       token.should.equal(this.zepToken.address);
     });
+    it('tracks the wallet', async function() {
+      const wallet = await this.zepCrowdsale.wallet();
+      wallet.should.equal(this.wallet);
+    });
+    it('tracks the rate', async function() {
+      const rate = await this.zepCrowdsale.rate();
+      rate.should.be.bignumber.equal(this.rate);
+    });
   });
 });
