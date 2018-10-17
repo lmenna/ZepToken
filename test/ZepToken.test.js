@@ -1,4 +1,13 @@
-const BigNumber = web3.BigNumber;
+/**
+ * @title ZepToken.test.js
+ * Unit tests for ZepToken mintable, ERC20 tokens.  Tests are run using Mocha.
+ *
+ * Run these using...
+ * > truffle test
+ *
+ */
+
+ const BigNumber = web3.BigNumber;
 const ZepToken = artifacts.require('ZepToken');
 require('chai')
   .use(require('chai-bignumber')(BigNumber))
