@@ -12,8 +12,8 @@ import "openzeppelin-solidity/contracts/token/ERC20/PausableToken.sol";
 
 contract ZepToken is MintableToken, PausableToken, DetailedERC20 {
 
-constructor(string _name, string _symbol, uint8 _decimals)
-  DetailedERC20(_name, _symbol, _decimals)
+constructor(string name, string symbol, uint8 decimals)
+  DetailedERC20(name, symbol, decimals)
   public {
 
   }
