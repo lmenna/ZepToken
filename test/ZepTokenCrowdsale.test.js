@@ -9,6 +9,8 @@
 
 import ether from './helpers/Ether';
 import revert from './helpers/Revert';
+import { increaseTo, duration } from './helpers/Time';
+import latestTime from './helpers/latestTime';
 
 const BigNumber = web3.BigNumber;
 require('chai')
@@ -18,18 +20,16 @@ require('chai')
 
 const ZepTokenCrowdsale = artifacts.require('ZepTokenCrowdsale');
 const ZepToken = artifacts.require('ZepToken');
-const ZepTokenTimedCrowdsale = artifacts.require('ZepTokenTimedCrowdsale');
 
 contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
 
-  console.log("wallet:", wallet, " investor1:", investor1, " investor2:", investor2);
   beforeEach(async function() {
     // For creating the ZepToken
     this.name = 'Zep Token';
     this.symbol = 'ZEP';
     this.decimals = 18;
     // A ZepToken is needed to test the ZepTokenCrowdsale
-    console.log("Creating ZepToken(name=", this.name,",symbol=",this.symbol,",decimals=",this.decimals,")" );
+    // console.log("Creating ZepToken(name=", this.name,",symbol=",this.symbol,",decimals=",this.decimals,")" );
     this.zepToken = await ZepToken.new(
         this.name,
         this.symbol,
@@ -39,24 +39,42 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
     this.rate = 500;
     this.wallet = wallet;
     this.cap = ether(5000);
+    this.goal = ether(20);
     this.investorMinCap = ether(0.01);
     this.investorHardCap = ether(250);
+    // Config for the TimedCrowdsale
+    this.openingTime = latestTime() + duration.weeks(1);
+    this.closingTime = this.openingTime + duration.weeks(1);
 
     // Deploy the ZepTokenCrowdsale
     console.log("Creating ZepTokenCrowdsale(rate=", this.rate,
       ",wallet=",this.wallet,
       ",address=", this.zepToken.address,
       ",cap=", this.cap,
+      ",goal=", this.goal,
+      ",openingTime=", this.openingTime,
+      ",closingTime=", this.closingTime,
       ")" );
     this.zepCrowdsale = await ZepTokenCrowdsale.new(
         this.rate,
         this.wallet,
         this.zepToken.address,
-        this.cap
+        this.cap,
+        this.goal,
+        this.openingTime,
+        this.closingTime
       );
-    await this.zepToken.transferOwnership(this.zepCrowdsale.address);
-
+      // Transfer ownership of the token to this crowdsale
+      await this.zepToken.transferOwnership(this.zepCrowdsale.address);
+      // Add some investors to the whitelist so we can test transactions
+      await this.zepCrowdsale.addAddressesToWhitelist([investor1, investor2]);
+      // Track the refund vault
+      // this.vaultAddress = await this.zepCrowdsale.vault();
+      // this.vault = RefundVault.at(this.vaultAddress)
+      // Advance the time to be in the window where the crowdsale is open
+      await increaseTo(this.openingTime + 10);
   });
+
 
   describe('crowdsale', function() {
     it('tracks the token', async function() {
@@ -78,6 +96,31 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
       await this.zepCrowdsale.sendTransaction({value: ether(1), from: investor1 }).should.be.fulfilled;
       // Investor2 buys some tokens for investor1
       await this.zepCrowdsale.buyTokens(investor1, {value: ether(1), from: investor2 }).should.be.fulfilled;
+    });
+  });
+
+  describe('whitelisted Crowdsale', function() {
+    it('rejects contributions from non-whitelisted addresses', async function() {
+      // use default account as the one that is not whitelisted
+      const notWhiteListed = _;
+      await this.zepCrowdsale.sendTransaction({value: ether(1), from: notWhiteListed }).should.be.rejectedWith(revert);
+    });
+  });
+
+  describe('Refundable Crowdsale', function() {
+    beforeEach(async function() {
+      await this.zepCrowdsale.buyTokens(investor1, {value: ether(1), from: investor1});
+    });
+    describe('during crowdsale', function() {
+      it('prevents the investor from claiming refund', async function() {
+        await this.zepCrowdsale.claimRefund().should.be.rejectedWith(revert);
+      });
+    });
+
+    it('rejects contributions from non-whitelisted addresses', async function() {
+      // use default account as the one that is not whitelisted
+      const notWhiteListed = _;
+      await this.zepCrowdsale.sendTransaction({value: ether(1), from: notWhiteListed }).should.be.rejectedWith(revert);
     });
   });
 

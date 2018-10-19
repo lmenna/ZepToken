@@ -10,9 +10,15 @@ pragma solidity ^0.4.24;
 import "openzeppelin-solidity/contracts/crowdsale/Crowdsale.sol";
 import "openzeppelin-solidity/contracts/crowdsale/emission/MintedCrowdsale.sol";
 import "openzeppelin-solidity/contracts/crowdsale/validation/CappedCrowdsale.sol";
+import "openzeppelin-solidity/contracts/crowdsale/validation/WhitelistedCrowdsale.sol";
+import "openzeppelin-solidity/contracts/crowdsale/distribution/RefundableCrowdsale.sol";
+import "openzeppelin-solidity/contracts/crowdsale/validation/TimedCrowdsale.sol";
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 
-contract ZepTokenCrowdsale is MintedCrowdsale, CappedCrowdsale {
+contract ZepTokenCrowdsale is Crowdsale, MintedCrowdsale, CappedCrowdsale, TimedCrowdsale, WhitelistedCrowdsale, RefundableCrowdsale
+{
+
+// is RefundableCrowdsale, TimedCrowdsale, WhitelistedCrowdsale, MintedCrowdsale, CappedCrowdsale {
 
   // Set investor limits.  Min and max on an aggregate basis.
   // Track limits in the mapping.
@@ -26,12 +32,24 @@ contract ZepTokenCrowdsale is MintedCrowdsale, CappedCrowdsale {
    *  @param wallet address for creator of the crowdsale
    *  @param token the ERC20 token this crowdsale will manage and create
    *  @param cap Maximum number of tokens that can be created.
+   *  @param goal Minimum amount to be raised for the crowdsale to complete successfully
    */
-  constructor(uint256 rate, address wallet, ERC20 token, uint256 cap)
+  constructor(
+    uint256 rate,
+    address wallet,
+    ERC20 token,
+    uint256 cap,
+    uint256 goal,
+    uint256 openingTime,
+    uint256 closingTime
+  )
     Crowdsale(rate, wallet, token)
     CappedCrowdsale(cap)
+    TimedCrowdsale(openingTime, closingTime)
+    RefundableCrowdsale(goal)
     public
   {
+      require(goal <= cap);
   }
 
   /**
