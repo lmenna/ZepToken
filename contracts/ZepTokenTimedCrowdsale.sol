@@ -7,13 +7,14 @@
 
 pragma solidity ^0.4.24;
 
+import "./ZepTokenCrowdsale.sol";
 import "openzeppelin-solidity/contracts/crowdsale/Crowdsale.sol";
 import "openzeppelin-solidity/contracts/crowdsale/emission/MintedCrowdsale.sol";
 import "openzeppelin-solidity/contracts/crowdsale/validation/CappedCrowdsale.sol";
 import "openzeppelin-solidity/contracts/crowdsale/validation/TimedCrowdsale.sol";
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 
-contract ZepTokenTimedCrowdsale is MintedCrowdsale, CappedCrowdsale, TimedCrowdsale {
+contract ZepTokenTimedCrowdsale is ZepTokenCrowdsale, TimedCrowdsale {
 
   // Set investor limits.  Min and max on an aggregate basis.
   // Track limits in the mapping.
@@ -38,43 +39,10 @@ contract ZepTokenTimedCrowdsale is MintedCrowdsale, CappedCrowdsale, TimedCrowds
     uint256 openingTime,
     uint256 closingTime
   )
-    Crowdsale(rate, wallet, token)
-    CappedCrowdsale(cap)
+    ZepTokenCrowdsale(rate, wallet, token, cap)
     TimedCrowdsale(openingTime, closingTime)
     public
   {
   }
 
-  /**
-   *  @dev _preValidatePurchase Extends validation of parent
-   *  Add additional validation with a minimum and maximum contribution allows
-   *  from each of the investors.  The mapping _investorContributions keeps track
-   *  of how much each investor address has contributed.
-   *  @param beneficiary address trying to purchase tokens
-   *  @param weiAmount amount the beneficiary is attempting to purchase
-   */
-  function _preValidatePurchase(
-    address beneficiary,
-    uint weiAmount
-    ) internal
-  {
-    super._preValidatePurchase(beneficiary, weiAmount);
-    uint256 existingContributions = _investorContributions[beneficiary];
-    uint256 newContribution = SafeMath.add(existingContributions, weiAmount);
-    require(newContribution >= _investorMinCap);
-    require(newContribution <= _investorMaxCap);
-    _investorContributions[beneficiary] = newContribution;
-  }
-
-  /**
-   *  @dev getUserContribution Provides access to how much an address has contributed to this crowdsale
-   *  @param contributor Address of entity (validated seperately via KYC portal) that contributed to the crowd sale.
-   *  @return Amount of tokens the contributor has purchased so far.
-   */
-  function getUserContribution(address contributor)
-    public view returns(uint256)
-  {
-    return(_investorContributions[contributor]);
-  }
-
-} // End of contract ZepTokenCrowdsale
+} // End of contract ZepTokenTimedCrowdsale
