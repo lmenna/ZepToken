@@ -18,13 +18,15 @@ import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 contract ZepTokenCrowdsale is Crowdsale, MintedCrowdsale, CappedCrowdsale, TimedCrowdsale, WhitelistedCrowdsale, RefundableCrowdsale
 {
 
-// is RefundableCrowdsale, TimedCrowdsale, WhitelistedCrowdsale, MintedCrowdsale, CappedCrowdsale {
-
   // Set investor limits.  Min and max on an aggregate basis.
   // Track limits in the mapping.
   uint256 public _investorMinCap = 10000000000000000; // 0.01 ETH
   uint256 public _investorMaxCap = 250000000000000000000; // 250 ETH
   mapping(address => uint256) public _investorContributions;
+
+  // Crowdsale will run through serval phases.  Keep track of this in an enum.
+  enum CrowdsalePhase { PreICO, PublicICO }
+  CrowdsalePhase public phase = CrowdsalePhase.PreICO;
 
   /**
    *  @dev Constructor Constructor does nothing except call into constructors it inherits from.
@@ -82,6 +84,38 @@ contract ZepTokenCrowdsale is Crowdsale, MintedCrowdsale, CappedCrowdsale, Timed
     public view returns(uint256)
   {
     return(_investorContributions[contributor]);
+  }
+
+  /**
+   *  @dev setCrowdsalePhase Allows an admin to change which phase of the ICO we are in
+   *  @param newPhase you want the ICO to be in
+   */
+  function setCrowdsalePhase(uint newPhase) onlyOwner public
+  {
+    if(uint(CrowdsalePhase.PreICO) == newPhase) {
+      phase = CrowdsalePhase.PreICO;
+    } else if (uint(CrowdsalePhase.PublicICO) == newPhase) {
+      phase = CrowdsalePhase.PublicICO;
+    }
+    // Pre ICO rate is better than the public rate
+    if(phase == CrowdsalePhase.PreICO) {
+      rate = 250;
+    }
+    else if (phase == CrowdsalePhase.PublicICO) {
+      rate = 500;
+    }
+  }
+
+  /**
+   * @dev The wallet receives funds during the PreICO phase, vault receives funds during the PublicICO phase
+   */
+  function _forwardFunds() internal {
+
+    if(phase == CrowdsalePhase.PreICO) {
+      wallet.transfer(msg.value);
+    } else if (phase == CrowdsalePhase.PublicICO) {
+      super._forwardFunds();
+    }
   }
 
 } // End of contract ZepTokenCrowdsale

@@ -36,7 +36,8 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
         this.decimals);
 
     // Config for creating the ZepTokenCrowdsale
-    this.rate = 500;
+    this.preICORate = 250;
+    this.publicICORate = 500;
     this.wallet = wallet;
     this.cap = ether(5000);
     this.goal = ether(20);
@@ -46,8 +47,12 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
     this.openingTime = latestTime() + duration.weeks(1);
     this.closingTime = this.openingTime + duration.weeks(1);
 
+    // ICO Phases
+    this.preICOPhase = 0;
+    this.publicICOPhase = 1;
+
     // Deploy the ZepTokenCrowdsale
-    console.log("Creating ZepTokenCrowdsale(rate=", this.rate,
+    console.log("Creating ZepTokenCrowdsale(rate=", this.preICORate,
       ",wallet=",this.wallet,
       ",address=", this.zepToken.address,
       ",cap=", this.cap,
@@ -56,7 +61,7 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
       ",closingTime=", this.closingTime,
       ")" );
     this.zepCrowdsale = await ZepTokenCrowdsale.new(
-        this.rate,
+        this.preICORate,
         this.wallet,
         this.zepToken.address,
         this.cap,
@@ -87,7 +92,7 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
     });
     it('tracks the rate', async function() {
       const rate = await this.zepCrowdsale.rate();
-      rate.should.be.bignumber.equal(this.rate);
+      rate.should.be.bignumber.equal(this.preICORate);
     });
   });
 
@@ -117,6 +122,31 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
       });
     });
 
+    describe('when the crowdsale phase is PreICO', function() {
+      beforeEach(async function() {
+        // Should be in the preICOPhase by default
+        await this.zepCrowdsale.buyTokens(investor1, { value: ether(1), from: investor1 });
+      });
+
+      it('forwards funds to the wallet', async function() {
+        const balance = await web3.eth.getBalance(this.wallet);
+console.log("->>> balance:", balance, " toNumber():", balance.toNumber(), " ether(100): ", ether(100));
+        expect(balance.toNumber()).to.be.above(ether(100).toNumber());
+      });
+    });
+
+    describe('when the crowdsale phase is PublicICO', function() {
+      beforeEach(async function() {
+        await this.zepCrowdsale.setCrowdsalePhase(this.publicICOPhase, { from: _ });
+        await this.zepCrowdsale.buyTokens(investor1, { value: ether(1), from: investor1 });
+      });
+
+      it('forwards funds to the refund vault', async function() {
+        const balance = await web3.eth.getBalance(this.wallet);
+        expect(balance.toNumber()).to.be.above(0);
+      });
+    });
+
     it('rejects contributions from non-whitelisted addresses', async function() {
       // use default account as the one that is not whitelisted
       const notWhiteListed = _;
@@ -124,8 +154,29 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
     });
   });
 
+  describe('Crowdsale Phases', function() {
+    it('starts with PreICO phase', async function() {
+      const currentPhase = await this.zepCrowdsale.phase();
+      currentPhase.should.be.bignumber.equal(this.preICOPhase);
+    });
+    it('starts with rate set to be PreICO rate', async function() {
+      const rate = await this.zepCrowdsale.rate();
+      rate.should.be.bignumber.equal(this.preICORate);
+    });
+    it('allows admin to update the phase and rate', async function() {
+      await this.zepCrowdsale.setCrowdsalePhase(this.publicICOPhase, { from: _ });
+      const currentPhase = await this.zepCrowdsale.phase();
+      currentPhase.should.be.bignumber.equal(this.publicICOPhase);
+      const rate = await this.zepCrowdsale.rate();
+      rate.should.be.bignumber.equal(this.publicICORate);
+    });
+    it('prevent a non admin from update the phase', async function() {
+      await this.zepCrowdsale.setCrowdsalePhase(this.publicICOPhase, { from: investor1 }).should.be.rejectedWith(revert);
+    });
+  });
+
   describe('minted crowdsale', function() {
-    it('mint tokens after purchase', async function() {
+    it('mints tokens after purchase', async function() {
       const originalTotalSupply = await this.zepToken.totalSupply();
       await this.zepCrowdsale.sendTransaction({value: ether(1), from: investor1 });
       const newTotalSupply = await this.zepToken.totalSupply();

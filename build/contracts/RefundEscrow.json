@@ -256,14 +256,14 @@
     "absolutePath": "openzeppelin-solidity/contracts/payment/RefundEscrow.sol",
     "exportedSymbols": {
       "RefundEscrow": [
-        1474
+        1563
       ]
     },
-    "id": 1475,
+    "id": 1564,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1338,
+        "id": 1427,
         "literals": [
           "solidity",
           "^",
@@ -276,10 +276,10 @@
       {
         "absolutePath": "openzeppelin-solidity/contracts/payment/ConditionalEscrow.sol",
         "file": "./ConditionalEscrow.sol",
-        "id": 1339,
+        "id": 1428,
         "nodeType": "ImportDirective",
-        "scope": 1475,
-        "sourceUnit": 1230,
+        "scope": 1564,
+        "sourceUnit": 1319,
         "src": "26:33:15",
         "symbolAliases": [],
         "unitAlias": ""
@@ -287,10 +287,10 @@
       {
         "absolutePath": "openzeppelin-solidity/contracts/ownership/Ownable.sol",
         "file": "../ownership/Ownable.sol",
-        "id": 1340,
+        "id": 1429,
         "nodeType": "ImportDirective",
-        "scope": 1475,
-        "sourceUnit": 1199,
+        "scope": 1564,
+        "sourceUnit": 1288,
         "src": "60:34:15",
         "symbolAliases": [],
         "unitAlias": ""
@@ -301,17 +301,17 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1341,
+              "id": 1430,
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1198,
+              "referencedDeclaration": 1287,
               "src": "374:7:15",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Ownable_$1198",
+                "typeIdentifier": "t_contract$_Ownable_$1287",
                 "typeString": "contract Ownable"
               }
             },
-            "id": 1342,
+            "id": 1431,
             "nodeType": "InheritanceSpecifier",
             "src": "374:7:15"
           },
@@ -319,57 +319,57 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1343,
+              "id": 1432,
               "name": "ConditionalEscrow",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1229,
+              "referencedDeclaration": 1318,
               "src": "383:17:15",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ConditionalEscrow_$1229",
+                "typeIdentifier": "t_contract$_ConditionalEscrow_$1318",
                 "typeString": "contract ConditionalEscrow"
               }
             },
-            "id": 1344,
+            "id": 1433,
             "nodeType": "InheritanceSpecifier",
             "src": "383:17:15"
           }
         ],
         "contractDependencies": [
-          1198,
-          1229,
-          1336
+          1287,
+          1318,
+          1425
         ],
         "contractKind": "contract",
         "documentation": "@title RefundEscrow\n@dev Escrow that holds funds for a beneficiary, deposited from multiple parties.\nThe contract owner may close the deposit period, and allow for either withdrawal\nby the beneficiary, or refunds to the depositors.",
         "fullyImplemented": true,
-        "id": 1474,
+        "id": 1563,
         "linearizedBaseContracts": [
-          1474,
-          1229,
-          1336,
-          1198
+          1563,
+          1318,
+          1425,
+          1287
         ],
         "name": "RefundEscrow",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "RefundEscrow.State",
-            "id": 1348,
+            "id": 1437,
             "members": [
               {
-                "id": 1345,
+                "id": 1434,
                 "name": "Active",
                 "nodeType": "EnumValue",
                 "src": "418:6:15"
               },
               {
-                "id": 1346,
+                "id": 1435,
                 "name": "Refunding",
                 "nodeType": "EnumValue",
                 "src": "426:9:15"
               },
               {
-                "id": 1347,
+                "id": 1436,
                 "name": "Closed",
                 "nodeType": "EnumValue",
                 "src": "437:6:15"
@@ -382,11 +382,11 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 1350,
+            "id": 1439,
             "name": "Closed",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1349,
+              "id": 1438,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "461:2:15"
@@ -396,11 +396,11 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 1352,
+            "id": 1441,
             "name": "RefundsEnabled",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1351,
+              "id": 1440,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "487:2:15"
@@ -409,26 +409,26 @@
           },
           {
             "constant": false,
-            "id": 1354,
+            "id": 1443,
             "name": "state",
             "nodeType": "VariableDeclaration",
-            "scope": 1474,
+            "scope": 1563,
             "src": "494:18:15",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_enum$_State_$1348",
+              "typeIdentifier": "t_enum$_State_$1437",
               "typeString": "enum RefundEscrow.State"
             },
             "typeName": {
               "contractScope": null,
-              "id": 1353,
+              "id": 1442,
               "name": "State",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1348,
+              "referencedDeclaration": 1437,
               "src": "494:5:15",
               "typeDescriptions": {
-                "typeIdentifier": "t_enum$_State_$1348",
+                "typeIdentifier": "t_enum$_State_$1437",
                 "typeString": "enum RefundEscrow.State"
               }
             },
@@ -437,10 +437,10 @@
           },
           {
             "constant": false,
-            "id": 1356,
+            "id": 1445,
             "name": "beneficiary",
             "nodeType": "VariableDeclaration",
-            "scope": 1474,
+            "scope": 1563,
             "src": "516:26:15",
             "stateVariable": true,
             "storageLocation": "default",
@@ -449,7 +449,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1355,
+              "id": 1444,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "516:7:15",
@@ -463,7 +463,7 @@
           },
           {
             "body": {
-              "id": 1378,
+              "id": 1467,
               "nodeType": "Block",
               "src": "681:104:15",
               "statements": [
@@ -477,18 +477,18 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 1366,
+                        "id": 1455,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 1362,
+                          "id": 1451,
                           "name": "_beneficiary",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1358,
+                          "referencedDeclaration": 1447,
                           "src": "695:12:15",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -503,7 +503,7 @@
                             {
                               "argumentTypes": null,
                               "hexValue": "30",
-                              "id": 1364,
+                              "id": 1453,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -526,7 +526,7 @@
                                 "typeString": "int_const 0"
                               }
                             ],
-                            "id": 1363,
+                            "id": 1452,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -539,7 +539,7 @@
                             },
                             "typeName": "address"
                           },
-                          "id": 1365,
+                          "id": 1454,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -567,21 +567,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 1361,
+                      "id": 1450,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2078,
-                        2079
+                        2167,
+                        2168
                       ],
-                      "referencedDeclaration": 2078,
+                      "referencedDeclaration": 2167,
                       "src": "687:7:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 1367,
+                    "id": 1456,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -595,25 +595,25 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1368,
+                  "id": 1457,
                   "nodeType": "ExpressionStatement",
                   "src": "687:35:15"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1371,
+                    "id": 1460,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1369,
+                      "id": 1458,
                       "name": "beneficiary",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1356,
+                      "referencedDeclaration": 1445,
                       "src": "728:11:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -624,11 +624,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1370,
+                      "id": 1459,
                       "name": "_beneficiary",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1358,
+                      "referencedDeclaration": 1447,
                       "src": "742:12:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -641,28 +641,28 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 1372,
+                  "id": 1461,
                   "nodeType": "ExpressionStatement",
                   "src": "728:26:15"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1376,
+                    "id": 1465,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1373,
+                      "id": 1462,
                       "name": "state",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1354,
+                      "referencedDeclaration": 1443,
                       "src": "760:5:15",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_State_$1348",
+                        "typeIdentifier": "t_enum$_State_$1437",
                         "typeString": "enum RefundEscrow.State"
                       }
                     },
@@ -672,18 +672,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1374,
+                        "id": 1463,
                         "name": "State",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1348,
+                        "referencedDeclaration": 1437,
                         "src": "768:5:15",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_State_$1348_$",
+                          "typeIdentifier": "t_type$_t_enum$_State_$1437_$",
                           "typeString": "type(enum RefundEscrow.State)"
                         }
                       },
-                      "id": 1375,
+                      "id": 1464,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -693,24 +693,24 @@
                       "referencedDeclaration": null,
                       "src": "768:12:15",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_State_$1348",
+                        "typeIdentifier": "t_enum$_State_$1437",
                         "typeString": "enum RefundEscrow.State"
                       }
                     },
                     "src": "760:20:15",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_State_$1348",
+                      "typeIdentifier": "t_enum$_State_$1437",
                       "typeString": "enum RefundEscrow.State"
                     }
                   },
-                  "id": 1377,
+                  "id": 1466,
                   "nodeType": "ExpressionStatement",
                   "src": "760:20:15"
                 }
               ]
             },
             "documentation": "@dev Constructor.\n@param _beneficiary The beneficiary of the deposits.",
-            "id": 1379,
+            "id": 1468,
             "implemented": true,
             "isConstructor": true,
             "isDeclaredConst": false,
@@ -718,15 +718,15 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1359,
+              "id": 1448,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1358,
+                  "id": 1447,
                   "name": "_beneficiary",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1379,
+                  "scope": 1468,
                   "src": "652:20:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -735,7 +735,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1357,
+                    "id": 1446,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "652:7:15",
@@ -752,12 +752,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 1360,
+              "id": 1449,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "681:0:15"
             },
-            "scope": 1474,
+            "scope": 1563,
             "src": "640:145:15",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -765,7 +765,7 @@
           },
           {
             "body": {
-              "id": 1397,
+              "id": 1486,
               "nodeType": "Block",
               "src": "979:71:15",
               "statements": [
@@ -776,24 +776,24 @@
                       {
                         "argumentTypes": null,
                         "commonType": {
-                          "typeIdentifier": "t_enum$_State_$1348",
+                          "typeIdentifier": "t_enum$_State_$1437",
                           "typeString": "enum RefundEscrow.State"
                         },
-                        "id": 1388,
+                        "id": 1477,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 1385,
+                          "id": 1474,
                           "name": "state",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1354,
+                          "referencedDeclaration": 1443,
                           "src": "993:5:15",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_State_$1348",
+                            "typeIdentifier": "t_enum$_State_$1437",
                             "typeString": "enum RefundEscrow.State"
                           }
                         },
@@ -803,18 +803,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 1386,
+                            "id": 1475,
                             "name": "State",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1348,
+                            "referencedDeclaration": 1437,
                             "src": "1002:5:15",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_type$_t_enum$_State_$1348_$",
+                              "typeIdentifier": "t_type$_t_enum$_State_$1437_$",
                               "typeString": "type(enum RefundEscrow.State)"
                             }
                           },
-                          "id": 1387,
+                          "id": 1476,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -824,7 +824,7 @@
                           "referencedDeclaration": null,
                           "src": "1002:12:15",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_State_$1348",
+                            "typeIdentifier": "t_enum$_State_$1437",
                             "typeString": "enum RefundEscrow.State"
                           }
                         },
@@ -842,21 +842,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 1384,
+                      "id": 1473,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2078,
-                        2079
+                        2167,
+                        2168
                       ],
-                      "referencedDeclaration": 2078,
+                      "referencedDeclaration": 2167,
                       "src": "985:7:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 1389,
+                    "id": 1478,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -870,7 +870,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1390,
+                  "id": 1479,
                   "nodeType": "ExpressionStatement",
                   "src": "985:30:15"
                 },
@@ -880,11 +880,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1394,
+                        "id": 1483,
                         "name": "_refundee",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1381,
+                        "referencedDeclaration": 1470,
                         "src": "1035:9:15",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -901,32 +901,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1391,
+                        "id": 1480,
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2127,
+                        "referencedDeclaration": 2216,
                         "src": "1021:5:15",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_super$_RefundEscrow_$1474",
+                          "typeIdentifier": "t_super$_RefundEscrow_$1563",
                           "typeString": "contract super RefundEscrow"
                         }
                       },
-                      "id": 1393,
+                      "id": 1482,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "deposit",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1295,
+                      "referencedDeclaration": 1384,
                       "src": "1021:13:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
                         "typeString": "function (address)"
                       }
                     },
-                    "id": 1395,
+                    "id": 1484,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -940,14 +940,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1396,
+                  "id": 1485,
                   "nodeType": "ExpressionStatement",
                   "src": "1021:24:15"
                 }
               ]
             },
             "documentation": "@dev Stores funds that may later be refunded.\n@param _refundee The address funds will be sent to if a refund occurs.",
-            "id": 1398,
+            "id": 1487,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -955,15 +955,15 @@
             "name": "deposit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1382,
+              "id": 1471,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1381,
+                  "id": 1470,
                   "name": "_refundee",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1398,
+                  "scope": 1487,
                   "src": "945:17:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -972,7 +972,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1380,
+                    "id": 1469,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "945:7:15",
@@ -989,20 +989,20 @@
             },
             "payable": true,
             "returnParameters": {
-              "id": 1383,
+              "id": 1472,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "979:0:15"
             },
-            "scope": 1474,
+            "scope": 1563,
             "src": "928:122:15",
             "stateMutability": "payable",
-            "superFunction": 1295,
+            "superFunction": 1384,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 1418,
+              "id": 1507,
               "nodeType": "Block",
               "src": "1195:86:15",
               "statements": [
@@ -1013,24 +1013,24 @@
                       {
                         "argumentTypes": null,
                         "commonType": {
-                          "typeIdentifier": "t_enum$_State_$1348",
+                          "typeIdentifier": "t_enum$_State_$1437",
                           "typeString": "enum RefundEscrow.State"
                         },
-                        "id": 1407,
+                        "id": 1496,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 1404,
+                          "id": 1493,
                           "name": "state",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1354,
+                          "referencedDeclaration": 1443,
                           "src": "1209:5:15",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_State_$1348",
+                            "typeIdentifier": "t_enum$_State_$1437",
                             "typeString": "enum RefundEscrow.State"
                           }
                         },
@@ -1040,18 +1040,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 1405,
+                            "id": 1494,
                             "name": "State",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1348,
+                            "referencedDeclaration": 1437,
                             "src": "1218:5:15",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_type$_t_enum$_State_$1348_$",
+                              "typeIdentifier": "t_type$_t_enum$_State_$1437_$",
                               "typeString": "type(enum RefundEscrow.State)"
                             }
                           },
-                          "id": 1406,
+                          "id": 1495,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1061,7 +1061,7 @@
                           "referencedDeclaration": null,
                           "src": "1218:12:15",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_State_$1348",
+                            "typeIdentifier": "t_enum$_State_$1437",
                             "typeString": "enum RefundEscrow.State"
                           }
                         },
@@ -1079,21 +1079,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 1403,
+                      "id": 1492,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2078,
-                        2079
+                        2167,
+                        2168
                       ],
-                      "referencedDeclaration": 2078,
+                      "referencedDeclaration": 2167,
                       "src": "1201:7:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 1408,
+                    "id": 1497,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1107,28 +1107,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1409,
+                  "id": 1498,
                   "nodeType": "ExpressionStatement",
                   "src": "1201:30:15"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1413,
+                    "id": 1502,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1410,
+                      "id": 1499,
                       "name": "state",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1354,
+                      "referencedDeclaration": 1443,
                       "src": "1237:5:15",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_State_$1348",
+                        "typeIdentifier": "t_enum$_State_$1437",
                         "typeString": "enum RefundEscrow.State"
                       }
                     },
@@ -1138,18 +1138,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1411,
+                        "id": 1500,
                         "name": "State",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1348,
+                        "referencedDeclaration": 1437,
                         "src": "1245:5:15",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_State_$1348_$",
+                          "typeIdentifier": "t_type$_t_enum$_State_$1437_$",
                           "typeString": "type(enum RefundEscrow.State)"
                         }
                       },
-                      "id": 1412,
+                      "id": 1501,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1159,17 +1159,17 @@
                       "referencedDeclaration": null,
                       "src": "1245:12:15",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_State_$1348",
+                        "typeIdentifier": "t_enum$_State_$1437",
                         "typeString": "enum RefundEscrow.State"
                       }
                     },
                     "src": "1237:20:15",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_State_$1348",
+                      "typeIdentifier": "t_enum$_State_$1437",
                       "typeString": "enum RefundEscrow.State"
                     }
                   },
-                  "id": 1414,
+                  "id": 1503,
                   "nodeType": "ExpressionStatement",
                   "src": "1237:20:15"
                 },
@@ -1179,18 +1179,18 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 1415,
+                      "id": 1504,
                       "name": "Closed",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1350,
+                      "referencedDeclaration": 1439,
                       "src": "1268:6:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$__$returns$__$",
                         "typeString": "function ()"
                       }
                     },
-                    "id": 1416,
+                    "id": 1505,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1204,28 +1204,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1417,
+                  "id": 1506,
                   "nodeType": "EmitStatement",
                   "src": "1263:13:15"
                 }
               ]
             },
             "documentation": "@dev Allows for the beneficiary to withdraw their funds, rejecting\nfurther deposits.",
-            "id": 1419,
+            "id": 1508,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1401,
+                "id": 1490,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1400,
+                  "id": 1489,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1146,
+                  "referencedDeclaration": 1235,
                   "src": "1185:9:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1239,19 +1239,19 @@
             "name": "close",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1399,
+              "id": 1488,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1175:2:15"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1402,
+              "id": 1491,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1195:0:15"
             },
-            "scope": 1474,
+            "scope": 1563,
             "src": "1161:120:15",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1259,7 +1259,7 @@
           },
           {
             "body": {
-              "id": 1439,
+              "id": 1528,
               "nodeType": "Block",
               "src": "1411:97:15",
               "statements": [
@@ -1270,24 +1270,24 @@
                       {
                         "argumentTypes": null,
                         "commonType": {
-                          "typeIdentifier": "t_enum$_State_$1348",
+                          "typeIdentifier": "t_enum$_State_$1437",
                           "typeString": "enum RefundEscrow.State"
                         },
-                        "id": 1428,
+                        "id": 1517,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 1425,
+                          "id": 1514,
                           "name": "state",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1354,
+                          "referencedDeclaration": 1443,
                           "src": "1425:5:15",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_State_$1348",
+                            "typeIdentifier": "t_enum$_State_$1437",
                             "typeString": "enum RefundEscrow.State"
                           }
                         },
@@ -1297,18 +1297,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 1426,
+                            "id": 1515,
                             "name": "State",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1348,
+                            "referencedDeclaration": 1437,
                             "src": "1434:5:15",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_type$_t_enum$_State_$1348_$",
+                              "typeIdentifier": "t_type$_t_enum$_State_$1437_$",
                               "typeString": "type(enum RefundEscrow.State)"
                             }
                           },
-                          "id": 1427,
+                          "id": 1516,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1318,7 +1318,7 @@
                           "referencedDeclaration": null,
                           "src": "1434:12:15",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_State_$1348",
+                            "typeIdentifier": "t_enum$_State_$1437",
                             "typeString": "enum RefundEscrow.State"
                           }
                         },
@@ -1336,21 +1336,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 1424,
+                      "id": 1513,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2078,
-                        2079
+                        2167,
+                        2168
                       ],
-                      "referencedDeclaration": 2078,
+                      "referencedDeclaration": 2167,
                       "src": "1417:7:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 1429,
+                    "id": 1518,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1364,28 +1364,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1430,
+                  "id": 1519,
                   "nodeType": "ExpressionStatement",
                   "src": "1417:30:15"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1434,
+                    "id": 1523,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1431,
+                      "id": 1520,
                       "name": "state",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1354,
+                      "referencedDeclaration": 1443,
                       "src": "1453:5:15",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_State_$1348",
+                        "typeIdentifier": "t_enum$_State_$1437",
                         "typeString": "enum RefundEscrow.State"
                       }
                     },
@@ -1395,18 +1395,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1432,
+                        "id": 1521,
                         "name": "State",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1348,
+                        "referencedDeclaration": 1437,
                         "src": "1461:5:15",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_State_$1348_$",
+                          "typeIdentifier": "t_type$_t_enum$_State_$1437_$",
                           "typeString": "type(enum RefundEscrow.State)"
                         }
                       },
-                      "id": 1433,
+                      "id": 1522,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1416,17 +1416,17 @@
                       "referencedDeclaration": null,
                       "src": "1461:15:15",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_State_$1348",
+                        "typeIdentifier": "t_enum$_State_$1437",
                         "typeString": "enum RefundEscrow.State"
                       }
                     },
                     "src": "1453:23:15",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_State_$1348",
+                      "typeIdentifier": "t_enum$_State_$1437",
                       "typeString": "enum RefundEscrow.State"
                     }
                   },
-                  "id": 1435,
+                  "id": 1524,
                   "nodeType": "ExpressionStatement",
                   "src": "1453:23:15"
                 },
@@ -1436,18 +1436,18 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 1436,
+                      "id": 1525,
                       "name": "RefundsEnabled",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1352,
+                      "referencedDeclaration": 1441,
                       "src": "1487:14:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$__$returns$__$",
                         "typeString": "function ()"
                       }
                     },
-                    "id": 1437,
+                    "id": 1526,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1461,28 +1461,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1438,
+                  "id": 1527,
                   "nodeType": "EmitStatement",
                   "src": "1482:21:15"
                 }
               ]
             },
             "documentation": "@dev Allows for refunds to take place, rejecting further deposits.",
-            "id": 1440,
+            "id": 1529,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1422,
+                "id": 1511,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1421,
+                  "id": 1510,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1146,
+                  "referencedDeclaration": 1235,
                   "src": "1401:9:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1496,19 +1496,19 @@
             "name": "enableRefunds",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1420,
+              "id": 1509,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1391:2:15"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1423,
+              "id": 1512,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1411:0:15"
             },
-            "scope": 1474,
+            "scope": 1563,
             "src": "1369:139:15",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1516,7 +1516,7 @@
           },
           {
             "body": {
-              "id": 1459,
+              "id": 1548,
               "nodeType": "Block",
               "src": "1607:90:15",
               "statements": [
@@ -1527,24 +1527,24 @@
                       {
                         "argumentTypes": null,
                         "commonType": {
-                          "typeIdentifier": "t_enum$_State_$1348",
+                          "typeIdentifier": "t_enum$_State_$1437",
                           "typeString": "enum RefundEscrow.State"
                         },
-                        "id": 1447,
+                        "id": 1536,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 1444,
+                          "id": 1533,
                           "name": "state",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1354,
+                          "referencedDeclaration": 1443,
                           "src": "1621:5:15",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_State_$1348",
+                            "typeIdentifier": "t_enum$_State_$1437",
                             "typeString": "enum RefundEscrow.State"
                           }
                         },
@@ -1554,18 +1554,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 1445,
+                            "id": 1534,
                             "name": "State",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1348,
+                            "referencedDeclaration": 1437,
                             "src": "1630:5:15",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_type$_t_enum$_State_$1348_$",
+                              "typeIdentifier": "t_type$_t_enum$_State_$1437_$",
                               "typeString": "type(enum RefundEscrow.State)"
                             }
                           },
-                          "id": 1446,
+                          "id": 1535,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1575,7 +1575,7 @@
                           "referencedDeclaration": null,
                           "src": "1630:12:15",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_State_$1348",
+                            "typeIdentifier": "t_enum$_State_$1437",
                             "typeString": "enum RefundEscrow.State"
                           }
                         },
@@ -1593,21 +1593,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 1443,
+                      "id": 1532,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2078,
-                        2079
+                        2167,
+                        2168
                       ],
-                      "referencedDeclaration": 2078,
+                      "referencedDeclaration": 2167,
                       "src": "1613:7:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 1448,
+                    "id": 1537,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1621,7 +1621,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1449,
+                  "id": 1538,
                   "nodeType": "ExpressionStatement",
                   "src": "1613:30:15"
                 },
@@ -1636,14 +1636,14 @@
                           "arguments": [
                             {
                               "argumentTypes": null,
-                              "id": 1454,
+                              "id": 1543,
                               "name": "this",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2126,
+                              "referencedDeclaration": 2215,
                               "src": "1678:4:15",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_RefundEscrow_$1474",
+                                "typeIdentifier": "t_contract$_RefundEscrow_$1563",
                                 "typeString": "contract RefundEscrow"
                               }
                             }
@@ -1651,11 +1651,11 @@
                           "expression": {
                             "argumentTypes": [
                               {
-                                "typeIdentifier": "t_contract$_RefundEscrow_$1474",
+                                "typeIdentifier": "t_contract$_RefundEscrow_$1563",
                                 "typeString": "contract RefundEscrow"
                               }
                             ],
-                            "id": 1453,
+                            "id": 1542,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -1668,7 +1668,7 @@
                             },
                             "typeName": "address"
                           },
-                          "id": 1455,
+                          "id": 1544,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1682,7 +1682,7 @@
                             "typeString": "address"
                           }
                         },
-                        "id": 1456,
+                        "id": 1545,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1706,18 +1706,18 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1450,
+                        "id": 1539,
                         "name": "beneficiary",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1356,
+                        "referencedDeclaration": 1445,
                         "src": "1649:11:15",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
-                      "id": 1452,
+                      "id": 1541,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1731,7 +1731,7 @@
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 1457,
+                    "id": 1546,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1745,14 +1745,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1458,
+                  "id": 1547,
                   "nodeType": "ExpressionStatement",
                   "src": "1649:43:15"
                 }
               ]
             },
             "documentation": "@dev Withdraws the beneficiary's funds.",
-            "id": 1460,
+            "id": 1549,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -1760,19 +1760,19 @@
             "name": "beneficiaryWithdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1441,
+              "id": 1530,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1597:2:15"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1442,
+              "id": 1531,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1607:0:15"
             },
-            "scope": 1474,
+            "scope": 1563,
             "src": "1569:128:15",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1780,7 +1780,7 @@
           },
           {
             "body": {
-              "id": 1472,
+              "id": 1561,
               "nodeType": "Block",
               "src": "1862:42:15",
               "statements": [
@@ -1788,24 +1788,24 @@
                   "expression": {
                     "argumentTypes": null,
                     "commonType": {
-                      "typeIdentifier": "t_enum$_State_$1348",
+                      "typeIdentifier": "t_enum$_State_$1437",
                       "typeString": "enum RefundEscrow.State"
                     },
-                    "id": 1470,
+                    "id": 1559,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 1467,
+                      "id": 1556,
                       "name": "state",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1354,
+                      "referencedDeclaration": 1443,
                       "src": "1875:5:15",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_State_$1348",
+                        "typeIdentifier": "t_enum$_State_$1437",
                         "typeString": "enum RefundEscrow.State"
                       }
                     },
@@ -1815,18 +1815,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1468,
+                        "id": 1557,
                         "name": "State",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1348,
+                        "referencedDeclaration": 1437,
                         "src": "1884:5:15",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_State_$1348_$",
+                          "typeIdentifier": "t_type$_t_enum$_State_$1437_$",
                           "typeString": "type(enum RefundEscrow.State)"
                         }
                       },
-                      "id": 1469,
+                      "id": 1558,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1836,7 +1836,7 @@
                       "referencedDeclaration": null,
                       "src": "1884:15:15",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_State_$1348",
+                        "typeIdentifier": "t_enum$_State_$1437",
                         "typeString": "enum RefundEscrow.State"
                       }
                     },
@@ -1846,15 +1846,15 @@
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 1466,
-                  "id": 1471,
+                  "functionReturnParameters": 1555,
+                  "id": 1560,
                   "nodeType": "Return",
                   "src": "1868:31:15"
                 }
               ]
             },
             "documentation": "@dev Returns whether refundees can withdraw their deposits (be refunded).",
-            "id": 1473,
+            "id": 1562,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -1862,15 +1862,15 @@
             "name": "withdrawalAllowed",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1463,
+              "id": 1552,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1462,
+                  "id": 1551,
                   "name": "_payee",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1473,
+                  "scope": 1562,
                   "src": "1819:14:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1879,7 +1879,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1461,
+                    "id": 1550,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1819:7:15",
@@ -1896,15 +1896,15 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 1466,
+              "id": 1555,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1465,
+                  "id": 1554,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1473,
+                  "scope": 1562,
                   "src": "1856:4:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1913,7 +1913,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1464,
+                    "id": 1553,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1856:4:15",
@@ -1928,14 +1928,14 @@
               ],
               "src": "1855:6:15"
             },
-            "scope": 1474,
+            "scope": 1563,
             "src": "1792:112:15",
             "stateMutability": "view",
-            "superFunction": 1210,
+            "superFunction": 1299,
             "visibility": "public"
           }
         ],
-        "scope": 1475,
+        "scope": 1564,
         "src": "349:1557:15"
       }
     ],
@@ -1945,14 +1945,14 @@
     "absolutePath": "openzeppelin-solidity/contracts/payment/RefundEscrow.sol",
     "exportedSymbols": {
       "RefundEscrow": [
-        1474
+        1563
       ]
     },
-    "id": 1475,
+    "id": 1564,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1338,
+        "id": 1427,
         "literals": [
           "solidity",
           "^",
@@ -1965,10 +1965,10 @@
       {
         "absolutePath": "openzeppelin-solidity/contracts/payment/ConditionalEscrow.sol",
         "file": "./ConditionalEscrow.sol",
-        "id": 1339,
+        "id": 1428,
         "nodeType": "ImportDirective",
-        "scope": 1475,
-        "sourceUnit": 1230,
+        "scope": 1564,
+        "sourceUnit": 1319,
         "src": "26:33:15",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1976,10 +1976,10 @@
       {
         "absolutePath": "openzeppelin-solidity/contracts/ownership/Ownable.sol",
         "file": "../ownership/Ownable.sol",
-        "id": 1340,
+        "id": 1429,
         "nodeType": "ImportDirective",
-        "scope": 1475,
-        "sourceUnit": 1199,
+        "scope": 1564,
+        "sourceUnit": 1288,
         "src": "60:34:15",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1990,17 +1990,17 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1341,
+              "id": 1430,
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1198,
+              "referencedDeclaration": 1287,
               "src": "374:7:15",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Ownable_$1198",
+                "typeIdentifier": "t_contract$_Ownable_$1287",
                 "typeString": "contract Ownable"
               }
             },
-            "id": 1342,
+            "id": 1431,
             "nodeType": "InheritanceSpecifier",
             "src": "374:7:15"
           },
@@ -2008,57 +2008,57 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1343,
+              "id": 1432,
               "name": "ConditionalEscrow",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1229,
+              "referencedDeclaration": 1318,
               "src": "383:17:15",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ConditionalEscrow_$1229",
+                "typeIdentifier": "t_contract$_ConditionalEscrow_$1318",
                 "typeString": "contract ConditionalEscrow"
               }
             },
-            "id": 1344,
+            "id": 1433,
             "nodeType": "InheritanceSpecifier",
             "src": "383:17:15"
           }
         ],
         "contractDependencies": [
-          1198,
-          1229,
-          1336
+          1287,
+          1318,
+          1425
         ],
         "contractKind": "contract",
         "documentation": "@title RefundEscrow\n@dev Escrow that holds funds for a beneficiary, deposited from multiple parties.\nThe contract owner may close the deposit period, and allow for either withdrawal\nby the beneficiary, or refunds to the depositors.",
         "fullyImplemented": true,
-        "id": 1474,
+        "id": 1563,
         "linearizedBaseContracts": [
-          1474,
-          1229,
-          1336,
-          1198
+          1563,
+          1318,
+          1425,
+          1287
         ],
         "name": "RefundEscrow",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "RefundEscrow.State",
-            "id": 1348,
+            "id": 1437,
             "members": [
               {
-                "id": 1345,
+                "id": 1434,
                 "name": "Active",
                 "nodeType": "EnumValue",
                 "src": "418:6:15"
               },
               {
-                "id": 1346,
+                "id": 1435,
                 "name": "Refunding",
                 "nodeType": "EnumValue",
                 "src": "426:9:15"
               },
               {
-                "id": 1347,
+                "id": 1436,
                 "name": "Closed",
                 "nodeType": "EnumValue",
                 "src": "437:6:15"
@@ -2071,11 +2071,11 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 1350,
+            "id": 1439,
             "name": "Closed",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1349,
+              "id": 1438,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "461:2:15"
@@ -2085,11 +2085,11 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 1352,
+            "id": 1441,
             "name": "RefundsEnabled",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1351,
+              "id": 1440,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "487:2:15"
@@ -2098,26 +2098,26 @@
           },
           {
             "constant": false,
-            "id": 1354,
+            "id": 1443,
             "name": "state",
             "nodeType": "VariableDeclaration",
-            "scope": 1474,
+            "scope": 1563,
             "src": "494:18:15",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_enum$_State_$1348",
+              "typeIdentifier": "t_enum$_State_$1437",
               "typeString": "enum RefundEscrow.State"
             },
             "typeName": {
               "contractScope": null,
-              "id": 1353,
+              "id": 1442,
               "name": "State",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1348,
+              "referencedDeclaration": 1437,
               "src": "494:5:15",
               "typeDescriptions": {
-                "typeIdentifier": "t_enum$_State_$1348",
+                "typeIdentifier": "t_enum$_State_$1437",
                 "typeString": "enum RefundEscrow.State"
               }
             },
@@ -2126,10 +2126,10 @@
           },
           {
             "constant": false,
-            "id": 1356,
+            "id": 1445,
             "name": "beneficiary",
             "nodeType": "VariableDeclaration",
-            "scope": 1474,
+            "scope": 1563,
             "src": "516:26:15",
             "stateVariable": true,
             "storageLocation": "default",
@@ -2138,7 +2138,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1355,
+              "id": 1444,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "516:7:15",
@@ -2152,7 +2152,7 @@
           },
           {
             "body": {
-              "id": 1378,
+              "id": 1467,
               "nodeType": "Block",
               "src": "681:104:15",
               "statements": [
@@ -2166,18 +2166,18 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 1366,
+                        "id": 1455,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 1362,
+                          "id": 1451,
                           "name": "_beneficiary",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1358,
+                          "referencedDeclaration": 1447,
                           "src": "695:12:15",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -2192,7 +2192,7 @@
                             {
                               "argumentTypes": null,
                               "hexValue": "30",
-                              "id": 1364,
+                              "id": 1453,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -2215,7 +2215,7 @@
                                 "typeString": "int_const 0"
                               }
                             ],
-                            "id": 1363,
+                            "id": 1452,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -2228,7 +2228,7 @@
                             },
                             "typeName": "address"
                           },
-                          "id": 1365,
+                          "id": 1454,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -2256,21 +2256,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 1361,
+                      "id": 1450,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2078,
-                        2079
+                        2167,
+                        2168
                       ],
-                      "referencedDeclaration": 2078,
+                      "referencedDeclaration": 2167,
                       "src": "687:7:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 1367,
+                    "id": 1456,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2284,25 +2284,25 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1368,
+                  "id": 1457,
                   "nodeType": "ExpressionStatement",
                   "src": "687:35:15"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1371,
+                    "id": 1460,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1369,
+                      "id": 1458,
                       "name": "beneficiary",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1356,
+                      "referencedDeclaration": 1445,
                       "src": "728:11:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -2313,11 +2313,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1370,
+                      "id": 1459,
                       "name": "_beneficiary",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1358,
+                      "referencedDeclaration": 1447,
                       "src": "742:12:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -2330,28 +2330,28 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 1372,
+                  "id": 1461,
                   "nodeType": "ExpressionStatement",
                   "src": "728:26:15"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1376,
+                    "id": 1465,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1373,
+                      "id": 1462,
                       "name": "state",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1354,
+                      "referencedDeclaration": 1443,
                       "src": "760:5:15",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_State_$1348",
+                        "typeIdentifier": "t_enum$_State_$1437",
                         "typeString": "enum RefundEscrow.State"
                       }
                     },
@@ -2361,18 +2361,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1374,
+                        "id": 1463,
                         "name": "State",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1348,
+                        "referencedDeclaration": 1437,
                         "src": "768:5:15",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_State_$1348_$",
+                          "typeIdentifier": "t_type$_t_enum$_State_$1437_$",
                           "typeString": "type(enum RefundEscrow.State)"
                         }
                       },
-                      "id": 1375,
+                      "id": 1464,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2382,24 +2382,24 @@
                       "referencedDeclaration": null,
                       "src": "768:12:15",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_State_$1348",
+                        "typeIdentifier": "t_enum$_State_$1437",
                         "typeString": "enum RefundEscrow.State"
                       }
                     },
                     "src": "760:20:15",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_State_$1348",
+                      "typeIdentifier": "t_enum$_State_$1437",
                       "typeString": "enum RefundEscrow.State"
                     }
                   },
-                  "id": 1377,
+                  "id": 1466,
                   "nodeType": "ExpressionStatement",
                   "src": "760:20:15"
                 }
               ]
             },
             "documentation": "@dev Constructor.\n@param _beneficiary The beneficiary of the deposits.",
-            "id": 1379,
+            "id": 1468,
             "implemented": true,
             "isConstructor": true,
             "isDeclaredConst": false,
@@ -2407,15 +2407,15 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1359,
+              "id": 1448,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1358,
+                  "id": 1447,
                   "name": "_beneficiary",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1379,
+                  "scope": 1468,
                   "src": "652:20:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2424,7 +2424,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1357,
+                    "id": 1446,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "652:7:15",
@@ -2441,12 +2441,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 1360,
+              "id": 1449,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "681:0:15"
             },
-            "scope": 1474,
+            "scope": 1563,
             "src": "640:145:15",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2454,7 +2454,7 @@
           },
           {
             "body": {
-              "id": 1397,
+              "id": 1486,
               "nodeType": "Block",
               "src": "979:71:15",
               "statements": [
@@ -2465,24 +2465,24 @@
                       {
                         "argumentTypes": null,
                         "commonType": {
-                          "typeIdentifier": "t_enum$_State_$1348",
+                          "typeIdentifier": "t_enum$_State_$1437",
                           "typeString": "enum RefundEscrow.State"
                         },
-                        "id": 1388,
+                        "id": 1477,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 1385,
+                          "id": 1474,
                           "name": "state",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1354,
+                          "referencedDeclaration": 1443,
                           "src": "993:5:15",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_State_$1348",
+                            "typeIdentifier": "t_enum$_State_$1437",
                             "typeString": "enum RefundEscrow.State"
                           }
                         },
@@ -2492,18 +2492,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 1386,
+                            "id": 1475,
                             "name": "State",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1348,
+                            "referencedDeclaration": 1437,
                             "src": "1002:5:15",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_type$_t_enum$_State_$1348_$",
+                              "typeIdentifier": "t_type$_t_enum$_State_$1437_$",
                               "typeString": "type(enum RefundEscrow.State)"
                             }
                           },
-                          "id": 1387,
+                          "id": 1476,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -2513,7 +2513,7 @@
                           "referencedDeclaration": null,
                           "src": "1002:12:15",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_State_$1348",
+                            "typeIdentifier": "t_enum$_State_$1437",
                             "typeString": "enum RefundEscrow.State"
                           }
                         },
@@ -2531,21 +2531,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 1384,
+                      "id": 1473,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2078,
-                        2079
+                        2167,
+                        2168
                       ],
-                      "referencedDeclaration": 2078,
+                      "referencedDeclaration": 2167,
                       "src": "985:7:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 1389,
+                    "id": 1478,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2559,7 +2559,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1390,
+                  "id": 1479,
                   "nodeType": "ExpressionStatement",
                   "src": "985:30:15"
                 },
@@ -2569,11 +2569,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1394,
+                        "id": 1483,
                         "name": "_refundee",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1381,
+                        "referencedDeclaration": 1470,
                         "src": "1035:9:15",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -2590,32 +2590,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1391,
+                        "id": 1480,
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2127,
+                        "referencedDeclaration": 2216,
                         "src": "1021:5:15",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_super$_RefundEscrow_$1474",
+                          "typeIdentifier": "t_super$_RefundEscrow_$1563",
                           "typeString": "contract super RefundEscrow"
                         }
                       },
-                      "id": 1393,
+                      "id": 1482,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "deposit",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1295,
+                      "referencedDeclaration": 1384,
                       "src": "1021:13:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
                         "typeString": "function (address)"
                       }
                     },
-                    "id": 1395,
+                    "id": 1484,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2629,14 +2629,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1396,
+                  "id": 1485,
                   "nodeType": "ExpressionStatement",
                   "src": "1021:24:15"
                 }
               ]
             },
             "documentation": "@dev Stores funds that may later be refunded.\n@param _refundee The address funds will be sent to if a refund occurs.",
-            "id": 1398,
+            "id": 1487,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -2644,15 +2644,15 @@
             "name": "deposit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1382,
+              "id": 1471,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1381,
+                  "id": 1470,
                   "name": "_refundee",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1398,
+                  "scope": 1487,
                   "src": "945:17:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2661,7 +2661,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1380,
+                    "id": 1469,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "945:7:15",
@@ -2678,20 +2678,20 @@
             },
             "payable": true,
             "returnParameters": {
-              "id": 1383,
+              "id": 1472,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "979:0:15"
             },
-            "scope": 1474,
+            "scope": 1563,
             "src": "928:122:15",
             "stateMutability": "payable",
-            "superFunction": 1295,
+            "superFunction": 1384,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 1418,
+              "id": 1507,
               "nodeType": "Block",
               "src": "1195:86:15",
               "statements": [
@@ -2702,24 +2702,24 @@
                       {
                         "argumentTypes": null,
                         "commonType": {
-                          "typeIdentifier": "t_enum$_State_$1348",
+                          "typeIdentifier": "t_enum$_State_$1437",
                           "typeString": "enum RefundEscrow.State"
                         },
-                        "id": 1407,
+                        "id": 1496,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 1404,
+                          "id": 1493,
                           "name": "state",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1354,
+                          "referencedDeclaration": 1443,
                           "src": "1209:5:15",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_State_$1348",
+                            "typeIdentifier": "t_enum$_State_$1437",
                             "typeString": "enum RefundEscrow.State"
                           }
                         },
@@ -2729,18 +2729,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 1405,
+                            "id": 1494,
                             "name": "State",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1348,
+                            "referencedDeclaration": 1437,
                             "src": "1218:5:15",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_type$_t_enum$_State_$1348_$",
+                              "typeIdentifier": "t_type$_t_enum$_State_$1437_$",
                               "typeString": "type(enum RefundEscrow.State)"
                             }
                           },
-                          "id": 1406,
+                          "id": 1495,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -2750,7 +2750,7 @@
                           "referencedDeclaration": null,
                           "src": "1218:12:15",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_State_$1348",
+                            "typeIdentifier": "t_enum$_State_$1437",
                             "typeString": "enum RefundEscrow.State"
                           }
                         },
@@ -2768,21 +2768,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 1403,
+                      "id": 1492,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2078,
-                        2079
+                        2167,
+                        2168
                       ],
-                      "referencedDeclaration": 2078,
+                      "referencedDeclaration": 2167,
                       "src": "1201:7:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 1408,
+                    "id": 1497,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2796,28 +2796,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1409,
+                  "id": 1498,
                   "nodeType": "ExpressionStatement",
                   "src": "1201:30:15"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1413,
+                    "id": 1502,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1410,
+                      "id": 1499,
                       "name": "state",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1354,
+                      "referencedDeclaration": 1443,
                       "src": "1237:5:15",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_State_$1348",
+                        "typeIdentifier": "t_enum$_State_$1437",
                         "typeString": "enum RefundEscrow.State"
                       }
                     },
@@ -2827,18 +2827,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1411,
+                        "id": 1500,
                         "name": "State",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1348,
+                        "referencedDeclaration": 1437,
                         "src": "1245:5:15",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_State_$1348_$",
+                          "typeIdentifier": "t_type$_t_enum$_State_$1437_$",
                           "typeString": "type(enum RefundEscrow.State)"
                         }
                       },
-                      "id": 1412,
+                      "id": 1501,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2848,17 +2848,17 @@
                       "referencedDeclaration": null,
                       "src": "1245:12:15",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_State_$1348",
+                        "typeIdentifier": "t_enum$_State_$1437",
                         "typeString": "enum RefundEscrow.State"
                       }
                     },
                     "src": "1237:20:15",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_State_$1348",
+                      "typeIdentifier": "t_enum$_State_$1437",
                       "typeString": "enum RefundEscrow.State"
                     }
                   },
-                  "id": 1414,
+                  "id": 1503,
                   "nodeType": "ExpressionStatement",
                   "src": "1237:20:15"
                 },
@@ -2868,18 +2868,18 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 1415,
+                      "id": 1504,
                       "name": "Closed",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1350,
+                      "referencedDeclaration": 1439,
                       "src": "1268:6:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$__$returns$__$",
                         "typeString": "function ()"
                       }
                     },
-                    "id": 1416,
+                    "id": 1505,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2893,28 +2893,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1417,
+                  "id": 1506,
                   "nodeType": "EmitStatement",
                   "src": "1263:13:15"
                 }
               ]
             },
             "documentation": "@dev Allows for the beneficiary to withdraw their funds, rejecting\nfurther deposits.",
-            "id": 1419,
+            "id": 1508,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1401,
+                "id": 1490,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1400,
+                  "id": 1489,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1146,
+                  "referencedDeclaration": 1235,
                   "src": "1185:9:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -2928,19 +2928,19 @@
             "name": "close",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1399,
+              "id": 1488,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1175:2:15"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1402,
+              "id": 1491,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1195:0:15"
             },
-            "scope": 1474,
+            "scope": 1563,
             "src": "1161:120:15",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2948,7 +2948,7 @@
           },
           {
             "body": {
-              "id": 1439,
+              "id": 1528,
               "nodeType": "Block",
               "src": "1411:97:15",
               "statements": [
@@ -2959,24 +2959,24 @@
                       {
                         "argumentTypes": null,
                         "commonType": {
-                          "typeIdentifier": "t_enum$_State_$1348",
+                          "typeIdentifier": "t_enum$_State_$1437",
                           "typeString": "enum RefundEscrow.State"
                         },
-                        "id": 1428,
+                        "id": 1517,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 1425,
+                          "id": 1514,
                           "name": "state",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1354,
+                          "referencedDeclaration": 1443,
                           "src": "1425:5:15",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_State_$1348",
+                            "typeIdentifier": "t_enum$_State_$1437",
                             "typeString": "enum RefundEscrow.State"
                           }
                         },
@@ -2986,18 +2986,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 1426,
+                            "id": 1515,
                             "name": "State",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1348,
+                            "referencedDeclaration": 1437,
                             "src": "1434:5:15",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_type$_t_enum$_State_$1348_$",
+                              "typeIdentifier": "t_type$_t_enum$_State_$1437_$",
                               "typeString": "type(enum RefundEscrow.State)"
                             }
                           },
-                          "id": 1427,
+                          "id": 1516,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -3007,7 +3007,7 @@
                           "referencedDeclaration": null,
                           "src": "1434:12:15",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_State_$1348",
+                            "typeIdentifier": "t_enum$_State_$1437",
                             "typeString": "enum RefundEscrow.State"
                           }
                         },
@@ -3025,21 +3025,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 1424,
+                      "id": 1513,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2078,
-                        2079
+                        2167,
+                        2168
                       ],
-                      "referencedDeclaration": 2078,
+                      "referencedDeclaration": 2167,
                       "src": "1417:7:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 1429,
+                    "id": 1518,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3053,28 +3053,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1430,
+                  "id": 1519,
                   "nodeType": "ExpressionStatement",
                   "src": "1417:30:15"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1434,
+                    "id": 1523,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1431,
+                      "id": 1520,
                       "name": "state",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1354,
+                      "referencedDeclaration": 1443,
                       "src": "1453:5:15",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_State_$1348",
+                        "typeIdentifier": "t_enum$_State_$1437",
                         "typeString": "enum RefundEscrow.State"
                       }
                     },
@@ -3084,18 +3084,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1432,
+                        "id": 1521,
                         "name": "State",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1348,
+                        "referencedDeclaration": 1437,
                         "src": "1461:5:15",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_State_$1348_$",
+                          "typeIdentifier": "t_type$_t_enum$_State_$1437_$",
                           "typeString": "type(enum RefundEscrow.State)"
                         }
                       },
-                      "id": 1433,
+                      "id": 1522,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -3105,17 +3105,17 @@
                       "referencedDeclaration": null,
                       "src": "1461:15:15",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_State_$1348",
+                        "typeIdentifier": "t_enum$_State_$1437",
                         "typeString": "enum RefundEscrow.State"
                       }
                     },
                     "src": "1453:23:15",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_State_$1348",
+                      "typeIdentifier": "t_enum$_State_$1437",
                       "typeString": "enum RefundEscrow.State"
                     }
                   },
-                  "id": 1435,
+                  "id": 1524,
                   "nodeType": "ExpressionStatement",
                   "src": "1453:23:15"
                 },
@@ -3125,18 +3125,18 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 1436,
+                      "id": 1525,
                       "name": "RefundsEnabled",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1352,
+                      "referencedDeclaration": 1441,
                       "src": "1487:14:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$__$returns$__$",
                         "typeString": "function ()"
                       }
                     },
-                    "id": 1437,
+                    "id": 1526,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3150,28 +3150,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1438,
+                  "id": 1527,
                   "nodeType": "EmitStatement",
                   "src": "1482:21:15"
                 }
               ]
             },
             "documentation": "@dev Allows for refunds to take place, rejecting further deposits.",
-            "id": 1440,
+            "id": 1529,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1422,
+                "id": 1511,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1421,
+                  "id": 1510,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1146,
+                  "referencedDeclaration": 1235,
                   "src": "1401:9:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -3185,19 +3185,19 @@
             "name": "enableRefunds",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1420,
+              "id": 1509,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1391:2:15"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1423,
+              "id": 1512,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1411:0:15"
             },
-            "scope": 1474,
+            "scope": 1563,
             "src": "1369:139:15",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -3205,7 +3205,7 @@
           },
           {
             "body": {
-              "id": 1459,
+              "id": 1548,
               "nodeType": "Block",
               "src": "1607:90:15",
               "statements": [
@@ -3216,24 +3216,24 @@
                       {
                         "argumentTypes": null,
                         "commonType": {
-                          "typeIdentifier": "t_enum$_State_$1348",
+                          "typeIdentifier": "t_enum$_State_$1437",
                           "typeString": "enum RefundEscrow.State"
                         },
-                        "id": 1447,
+                        "id": 1536,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 1444,
+                          "id": 1533,
                           "name": "state",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1354,
+                          "referencedDeclaration": 1443,
                           "src": "1621:5:15",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_State_$1348",
+                            "typeIdentifier": "t_enum$_State_$1437",
                             "typeString": "enum RefundEscrow.State"
                           }
                         },
@@ -3243,18 +3243,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 1445,
+                            "id": 1534,
                             "name": "State",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1348,
+                            "referencedDeclaration": 1437,
                             "src": "1630:5:15",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_type$_t_enum$_State_$1348_$",
+                              "typeIdentifier": "t_type$_t_enum$_State_$1437_$",
                               "typeString": "type(enum RefundEscrow.State)"
                             }
                           },
-                          "id": 1446,
+                          "id": 1535,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -3264,7 +3264,7 @@
                           "referencedDeclaration": null,
                           "src": "1630:12:15",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_State_$1348",
+                            "typeIdentifier": "t_enum$_State_$1437",
                             "typeString": "enum RefundEscrow.State"
                           }
                         },
@@ -3282,21 +3282,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 1443,
+                      "id": 1532,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2078,
-                        2079
+                        2167,
+                        2168
                       ],
-                      "referencedDeclaration": 2078,
+                      "referencedDeclaration": 2167,
                       "src": "1613:7:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 1448,
+                    "id": 1537,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3310,7 +3310,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1449,
+                  "id": 1538,
                   "nodeType": "ExpressionStatement",
                   "src": "1613:30:15"
                 },
@@ -3325,14 +3325,14 @@
                           "arguments": [
                             {
                               "argumentTypes": null,
-                              "id": 1454,
+                              "id": 1543,
                               "name": "this",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2126,
+                              "referencedDeclaration": 2215,
                               "src": "1678:4:15",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_RefundEscrow_$1474",
+                                "typeIdentifier": "t_contract$_RefundEscrow_$1563",
                                 "typeString": "contract RefundEscrow"
                               }
                             }
@@ -3340,11 +3340,11 @@
                           "expression": {
                             "argumentTypes": [
                               {
-                                "typeIdentifier": "t_contract$_RefundEscrow_$1474",
+                                "typeIdentifier": "t_contract$_RefundEscrow_$1563",
                                 "typeString": "contract RefundEscrow"
                               }
                             ],
-                            "id": 1453,
+                            "id": 1542,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -3357,7 +3357,7 @@
                             },
                             "typeName": "address"
                           },
-                          "id": 1455,
+                          "id": 1544,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -3371,7 +3371,7 @@
                             "typeString": "address"
                           }
                         },
-                        "id": 1456,
+                        "id": 1545,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -3395,18 +3395,18 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1450,
+                        "id": 1539,
                         "name": "beneficiary",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1356,
+                        "referencedDeclaration": 1445,
                         "src": "1649:11:15",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
-                      "id": 1452,
+                      "id": 1541,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -3420,7 +3420,7 @@
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 1457,
+                    "id": 1546,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3434,14 +3434,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1458,
+                  "id": 1547,
                   "nodeType": "ExpressionStatement",
                   "src": "1649:43:15"
                 }
               ]
             },
             "documentation": "@dev Withdraws the beneficiary's funds.",
-            "id": 1460,
+            "id": 1549,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -3449,19 +3449,19 @@
             "name": "beneficiaryWithdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1441,
+              "id": 1530,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1597:2:15"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1442,
+              "id": 1531,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1607:0:15"
             },
-            "scope": 1474,
+            "scope": 1563,
             "src": "1569:128:15",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -3469,7 +3469,7 @@
           },
           {
             "body": {
-              "id": 1472,
+              "id": 1561,
               "nodeType": "Block",
               "src": "1862:42:15",
               "statements": [
@@ -3477,24 +3477,24 @@
                   "expression": {
                     "argumentTypes": null,
                     "commonType": {
-                      "typeIdentifier": "t_enum$_State_$1348",
+                      "typeIdentifier": "t_enum$_State_$1437",
                       "typeString": "enum RefundEscrow.State"
                     },
-                    "id": 1470,
+                    "id": 1559,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 1467,
+                      "id": 1556,
                       "name": "state",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1354,
+                      "referencedDeclaration": 1443,
                       "src": "1875:5:15",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_State_$1348",
+                        "typeIdentifier": "t_enum$_State_$1437",
                         "typeString": "enum RefundEscrow.State"
                       }
                     },
@@ -3504,18 +3504,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1468,
+                        "id": 1557,
                         "name": "State",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1348,
+                        "referencedDeclaration": 1437,
                         "src": "1884:5:15",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_State_$1348_$",
+                          "typeIdentifier": "t_type$_t_enum$_State_$1437_$",
                           "typeString": "type(enum RefundEscrow.State)"
                         }
                       },
-                      "id": 1469,
+                      "id": 1558,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -3525,7 +3525,7 @@
                       "referencedDeclaration": null,
                       "src": "1884:15:15",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_State_$1348",
+                        "typeIdentifier": "t_enum$_State_$1437",
                         "typeString": "enum RefundEscrow.State"
                       }
                     },
@@ -3535,15 +3535,15 @@
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 1466,
-                  "id": 1471,
+                  "functionReturnParameters": 1555,
+                  "id": 1560,
                   "nodeType": "Return",
                   "src": "1868:31:15"
                 }
               ]
             },
             "documentation": "@dev Returns whether refundees can withdraw their deposits (be refunded).",
-            "id": 1473,
+            "id": 1562,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -3551,15 +3551,15 @@
             "name": "withdrawalAllowed",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1463,
+              "id": 1552,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1462,
+                  "id": 1551,
                   "name": "_payee",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1473,
+                  "scope": 1562,
                   "src": "1819:14:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3568,7 +3568,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1461,
+                    "id": 1550,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1819:7:15",
@@ -3585,15 +3585,15 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 1466,
+              "id": 1555,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1465,
+                  "id": 1554,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1473,
+                  "scope": 1562,
                   "src": "1856:4:15",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3602,7 +3602,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1464,
+                    "id": 1553,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1856:4:15",
@@ -3617,14 +3617,14 @@
               ],
               "src": "1855:6:15"
             },
-            "scope": 1474,
+            "scope": 1563,
             "src": "1792:112:15",
             "stateMutability": "view",
-            "superFunction": 1210,
+            "superFunction": 1299,
             "visibility": "public"
           }
         ],
-        "scope": 1475,
+        "scope": 1564,
         "src": "349:1557:15"
       }
     ],
@@ -3636,5 +3636,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-10-19T15:02:35.419Z"
+  "updatedAt": "2018-10-19T19:27:33.273Z"
 }
