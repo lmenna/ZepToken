@@ -7,6 +7,9 @@
 
 pragma solidity ^0.4.24;
 
+import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
+import "openzeppelin-solidity/contracts/token/ERC20/PausableToken.sol";
+import "openzeppelin-solidity/contracts/token/ERC20/MintableToken.sol";
 import "openzeppelin-solidity/contracts/crowdsale/Crowdsale.sol";
 import "openzeppelin-solidity/contracts/crowdsale/emission/MintedCrowdsale.sol";
 import "openzeppelin-solidity/contracts/crowdsale/validation/CappedCrowdsale.sol";
@@ -116,6 +119,20 @@ contract ZepTokenCrowdsale is Crowdsale, MintedCrowdsale, CappedCrowdsale, Timed
     } else if (phase == CrowdsalePhase.PublicICO) {
       super._forwardFunds();
     }
+  }
+
+  /**
+   * @dev Owner calls this to finalize the crowdsale. Must be after the sale has closed.
+   */
+  function finalization() internal {
+    if(goalReached()) {
+      // Finish minting. Freeze the total supply.
+      MintableToken mintableToken = MintableToken(token);
+      mintableToken.finishMinting();
+      // Unpause the token to allow it to trade normally.
+      PausableToken(token).unpause();
+    }
+    super.finalization();
   }
 
 } // End of contract ZepTokenCrowdsale
