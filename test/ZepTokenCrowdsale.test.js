@@ -52,6 +52,12 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
     this.preICOPhase = 0;
     this.publicICOPhase = 1;
 
+    // Token distribution
+    this.communityPercentage = 70;
+    this.founderPercentage = 10;
+    this.partnersPercentage = 10;
+    this.developersPercentage = 10;
+
     // Deploy the ZepTokenCrowdsale
     // console.log("Creating ZepTokenCrowdsale(rate=", this.preICORate,
     //   ",wallet=",this.wallet,
@@ -246,16 +252,20 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
       describe('when the goal is NOT reached', function() {
         beforeEach(async function() {
           // Invest less than the goal for the crowdsale to succeed
-          await this.zepCrowdsale.buyTokens(investor2, { value: ether(0.98765), from: investor2 });
+          const BT0 = await this.zepToken.balanceOf( investor2 );
+          console.log("BT0:", BT0);
+          await this.zepCrowdsale.setCrowdsalePhase(this.publicICOPhase, { from: _ });
+          await this.zepCrowdsale.buyTokens(investor2, { value: ether(1), from: investor2 });
           // Move forward in time past the end of the crowdsale
           await increaseTo(this.closingTime + 10);
           // Finalize the crowdsale
           await this.zepCrowdsale.finalize({ from: _});
         });
         it('allows investors to claim refunds', async function() {
-          const contributionPre = await this.zepCrowdsale.getUserContribution(investor2);
+          const BT1 = await this.zepToken.balanceOf( investor2 );
           await this.zepCrowdsale.claimRefund( { from: investor2 } ).should.be.fulfilled;
-          const contributionPost = await this.zepCrowdsale.getUserContribution(investor2);
+          const BT2 = await this.zepToken.balanceOf( investor2 );
+          console.log("BT1:", BT1, " BT2:", BT2 );
         })
       });
       describe('when the goal is reached', function() {
@@ -278,11 +288,39 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
           // When crowdsale is finished token should NOT be paused
           const paused = await this.zepToken.paused();
           paused.should.be.false;
+          // Verify ownership went back to the wallet after the crowdsale has finished
+          const owner = await this.zepToken.owner();
+          owner.should.equal(this.wallet);
           // No refunds when goal is reached.
           await this.zepCrowdsale.claimRefund( { from: investor2 } ).should.be.rejectedWith(revert);
         })
       });
     });
+  });
+
+  describe('token distribution', function() {
+    it('tracks token distribution correctly', async function() {
+      const communityPercentage = await this.zepCrowdsale.communityPercentage();
+      communityPercentage.should.be.bignumber.eq(this.communityPercentage, 'has correct communityPercentage');
+      const founderPercentage = await this.zepCrowdsale.founderPercentage();
+      founderPercentage.should.be.bignumber.eq(this.founderPercentage, 'has correct founderPercentage');
+      const partnersPercentage = await this.zepCrowdsale.partnersPercentage();
+      partnersPercentage.should.be.bignumber.eq(this.partnersPercentage, 'has correct partnersPercentage');
+      const developersPercentage = await this.zepCrowdsale.developersPercentage();
+      developersPercentage.should.be.bignumber.eq(this.developersPercentage, 'has correct developersPercentage');
+    });
+    it('is a valid token distribution correctly', async function() {
+      const communityPercentage = await this.zepCrowdsale.communityPercentage();
+      const founderPercentage = await this.zepCrowdsale.founderPercentage();
+      const partnersPercentage = await this.zepCrowdsale.partnersPercentage();
+      const developersPercentage = await this.zepCrowdsale.developersPercentage();
+      const total = communityPercentage.toNumber()
+        + founderPercentage.toNumber()
+        + partnersPercentage.toNumber()
+        + developersPercentage.toNumber();
+      total.should.be.equal(100);
+    });
+
   });
 
 }); // Keep this as the end closing }) pair

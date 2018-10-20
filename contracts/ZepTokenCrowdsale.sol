@@ -31,6 +31,12 @@ contract ZepTokenCrowdsale is Crowdsale, MintedCrowdsale, CappedCrowdsale, Timed
   enum CrowdsalePhase { PreICO, PublicICO }
   CrowdsalePhase public phase = CrowdsalePhase.PreICO;
 
+  // Token distribution
+  uint256 public communityPercentage = 70;
+  uint256 public founderPercentage = 10;
+  uint256 public partnersPercentage = 10;
+  uint256 public developersPercentage = 10;
+
   /**
    *  @dev Constructor Constructor does nothing except call into constructors it inherits from.
    *  @param rate conversion rate between ETH and this token.
@@ -130,7 +136,10 @@ contract ZepTokenCrowdsale is Crowdsale, MintedCrowdsale, CappedCrowdsale, Timed
       MintableToken mintableToken = MintableToken(token);
       mintableToken.finishMinting();
       // Unpause the token to allow it to trade normally.
-      PausableToken(token).unpause();
+      // Make sure to tranfer ownership back to the wallet.
+      PausableToken pausableToken = PausableToken(token);
+      pausableToken.unpause();
+      pausableToken.transferOwnership(wallet);
     }
     super.finalization();
   }
