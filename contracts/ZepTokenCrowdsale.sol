@@ -10,6 +10,7 @@ pragma solidity ^0.4.24;
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 import "openzeppelin-solidity/contracts/token/ERC20/PausableToken.sol";
 import "openzeppelin-solidity/contracts/token/ERC20/MintableToken.sol";
+import "openzeppelin-solidity/contracts/token/ERC20/TokenTimelock.sol";
 import "openzeppelin-solidity/contracts/crowdsale/Crowdsale.sol";
 import "openzeppelin-solidity/contracts/crowdsale/emission/MintedCrowdsale.sol";
 import "openzeppelin-solidity/contracts/crowdsale/validation/CappedCrowdsale.sol";
@@ -33,9 +34,15 @@ contract ZepTokenCrowdsale is Crowdsale, MintedCrowdsale, CappedCrowdsale, Timed
 
   // Token distribution
   uint256 public communityPercentage = 70;
-  uint256 public founderPercentage = 10;
+  uint256 public foundersPercentage = 10;
   uint256 public partnersPercentage = 10;
   uint256 public developersPercentage = 10;
+  // Addresses for the distribution
+  address public foundersFundAddr;
+  address public foundersTimelockAddr;
+  address public partnersFundAddr;
+  address public developersFundAddr;
+  uint    public releaseTime;
 
   /**
    *  @dev Constructor Constructor does nothing except call into constructors it inherits from.
@@ -52,7 +59,11 @@ contract ZepTokenCrowdsale is Crowdsale, MintedCrowdsale, CappedCrowdsale, Timed
     uint256 cap,
     uint256 goal,
     uint256 openingTime,
-    uint256 closingTime
+    uint256 closingTime,
+    address foundersFund,
+    address partnersFund,
+    address developersFund,
+    uint releaseTokensTime
   )
     Crowdsale(rate, wallet, token)
     CappedCrowdsale(cap)
@@ -61,6 +72,10 @@ contract ZepTokenCrowdsale is Crowdsale, MintedCrowdsale, CappedCrowdsale, Timed
     public
   {
       require(goal <= cap);
+      foundersFundAddr = foundersFund;
+      partnersFundAddr = partnersFund;
+      developersFundAddr = developersFund;
+      releaseTime = releaseTokensTime;
   }
 
   /**
@@ -134,6 +149,15 @@ contract ZepTokenCrowdsale is Crowdsale, MintedCrowdsale, CappedCrowdsale, Timed
     if(goalReached()) {
       // Finish minting. Freeze the total supply.
       MintableToken mintableToken = MintableToken(token);
+      uint256 alreadyMinted = mintableToken.totalSupply();
+      uint256 finalTotalSupply = alreadyMinted.div(communityPercentage).mul(100);
+      // Mint tokens for the founders, partners and developers
+      mintableToken.mint(developersFundAddr, finalTotalSupply.div(developersPercentage));
+      mintableToken.mint(partnersFundAddr, finalTotalSupply.div(developersPercentage));
+      // Lockup the tokens for founders and partners
+      foundersTimelockAddr = new TokenTimelock(token, foundersFundAddr, releaseTime);
+      mintableToken.mint(foundersTimelockAddr, finalTotalSupply.div(foundersPercentage));
+      // Minting in now finished
       mintableToken.finishMinting();
       // Unpause the token to allow it to trade normally.
       // Make sure to tranfer ownership back to the wallet.

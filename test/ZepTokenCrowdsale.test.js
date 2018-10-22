@@ -20,8 +20,9 @@ require('chai')
 
 const ZepTokenCrowdsale = artifacts.require('ZepTokenCrowdsale');
 const ZepToken = artifacts.require('ZepToken');
+const TokenTimelock = artifacts.require('./TokenTimelock');
 
-contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
+contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2, foundersFund, partnersFund, developersFund]) {
 
   beforeEach(async function() {
     // For creating the ZepToken
@@ -29,7 +30,6 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
     this.symbol = 'ZEP';
     this.decimals = 18;
     // A ZepToken is needed to test the ZepTokenCrowdsale
-    // console.log("Creating ZepToken(name=", this.name,",symbol=",this.symbol,",decimals=",this.decimals,")" );
     this.zepToken = await ZepToken.new(
         this.name,
         this.symbol,
@@ -54,19 +54,15 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
 
     // Token distribution
     this.communityPercentage = 70;
-    this.founderPercentage = 10;
+    this.foundersPercentage = 10;
     this.partnersPercentage = 10;
     this.developersPercentage = 10;
+    this.foundersFund = foundersFund;
+    this.partnersFund = partnersFund;
+    this.developersFund = developersFund;
+    this.releaseTime = this.closingTime + duration.years(1);
 
-    // Deploy the ZepTokenCrowdsale
-    // console.log("Creating ZepTokenCrowdsale(rate=", this.preICORate,
-    //   ",wallet=",this.wallet,
-    //   ",address=", this.zepToken.address,
-    //   ",cap=", this.cap,
-    //   ",goal=", this.goal,
-    //   ",openingTime=", this.openingTime,
-    //   ",closingTime=", this.closingTime,
-    //   ")" );
+    // Deploy a crowdsale with many features
     this.zepCrowdsale = await ZepTokenCrowdsale.new(
         this.preICORate,
         this.wallet,
@@ -74,7 +70,11 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
         this.cap,
         this.goal,
         this.openingTime,
-        this.closingTime
+        this.closingTime,
+        this.foundersFund,
+        this.partnersFund,
+        this.developersFund,
+        this.releaseTime
       );
       // Token should start out as paused and stay that way till the crowdsale is finalized
       await this.zepToken.pause();
@@ -253,7 +253,6 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
         beforeEach(async function() {
           // Invest less than the goal for the crowdsale to succeed
           const BT0 = await this.zepToken.balanceOf( investor2 );
-          console.log("BT0:", BT0);
           await this.zepCrowdsale.setCrowdsalePhase(this.publicICOPhase, { from: _ });
           await this.zepCrowdsale.buyTokens(investor2, { value: ether(1), from: investor2 });
           // Move forward in time past the end of the crowdsale
@@ -265,7 +264,6 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
           const BT1 = await this.zepToken.balanceOf( investor2 );
           await this.zepCrowdsale.claimRefund( { from: investor2 } ).should.be.fulfilled;
           const BT2 = await this.zepToken.balanceOf( investor2 );
-          console.log("BT1:", BT1, " BT2:", BT2 );
         })
       });
       describe('when the goal is reached', function() {
@@ -288,6 +286,33 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
           // When crowdsale is finished token should NOT be paused
           const paused = await this.zepToken.paused();
           paused.should.be.false;
+          let totalSupply = await this.zepToken.totalSupply();
+          totalSupply = totalSupply.toString();
+
+          // Check distribution to Founders
+          const releaseTime = await this.zepCrowdsale.releaseTime();
+          const foundersTimelockAddr = await this.zepCrowdsale.foundersTimelockAddr();
+          // Get balance from zepCrowdsale
+          var foundersTimelockBalance = await this.zepToken.balanceOf(foundersTimelockAddr);
+          foundersTimelockBalance = foundersTimelockBalance.toString();
+          foundersTimelockBalance = foundersTimelockBalance / (10 ** this.decimals);
+          // Get balance from this testing code
+          let foundersAmount = totalSupply / this.foundersPercentage;
+          foundersAmount = foundersAmount.toString();
+          foundersAmount = foundersAmount / (10 ** this.decimals);
+          // Verify balance from the zepCrowdsale and from this testing code match
+          assert.equal(foundersTimelockBalance.toString(), foundersAmount.toString());
+
+          // Can't withdraw from founders fund because of the timelock
+          const foundersTimeLock = await TokenTimelock.at(foundersTimelockAddr);
+          await foundersTimeLock.release().should.be.rejectedWith(revert);
+          // Move past the lockup period and verify the timelock is released
+          await increaseTo(this.releaseTime + 10);
+          await foundersTimeLock.release().should.be.fulfilled;
+
+          const partnersFundAddr = await this.zepCrowdsale.partnersFundAddr();
+          const developersFundAddr = await this.zepCrowdsale.developersFundAddr();
+
           // Verify ownership went back to the wallet after the crowdsale has finished
           const owner = await this.zepToken.owner();
           owner.should.equal(this.wallet);
@@ -302,8 +327,8 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
     it('tracks token distribution correctly', async function() {
       const communityPercentage = await this.zepCrowdsale.communityPercentage();
       communityPercentage.should.be.bignumber.eq(this.communityPercentage, 'has correct communityPercentage');
-      const founderPercentage = await this.zepCrowdsale.founderPercentage();
-      founderPercentage.should.be.bignumber.eq(this.founderPercentage, 'has correct founderPercentage');
+      const foundersPercentage = await this.zepCrowdsale.foundersPercentage();
+      foundersPercentage.should.be.bignumber.eq(this.foundersPercentage, 'has correct foundersPercentage');
       const partnersPercentage = await this.zepCrowdsale.partnersPercentage();
       partnersPercentage.should.be.bignumber.eq(this.partnersPercentage, 'has correct partnersPercentage');
       const developersPercentage = await this.zepCrowdsale.developersPercentage();
@@ -311,11 +336,11 @@ contract('ZepTokenCrowdsale', function([_, wallet, investor1, investor2]) {
     });
     it('is a valid token distribution correctly', async function() {
       const communityPercentage = await this.zepCrowdsale.communityPercentage();
-      const founderPercentage = await this.zepCrowdsale.founderPercentage();
+      const foundersPercentage = await this.zepCrowdsale.foundersPercentage();
       const partnersPercentage = await this.zepCrowdsale.partnersPercentage();
       const developersPercentage = await this.zepCrowdsale.developersPercentage();
       const total = communityPercentage.toNumber()
-        + founderPercentage.toNumber()
+        + foundersPercentage.toNumber()
         + partnersPercentage.toNumber()
         + developersPercentage.toNumber();
       total.should.be.equal(100);
